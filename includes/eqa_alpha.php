@@ -1,5 +1,7 @@
 <?php
 
+require_once( $path . 'includes/checklists/alpha/_variables.php' );
+
 require_once( $path . 'includes/checklists/alpha/appearance-theme.php' );
 require_once( $path . 'includes/checklists/alpha/appearance-customize.php' );
 require_once( $path . 'includes/checklists/alpha/settings-general.php' );
@@ -7,6 +9,12 @@ require_once( $path . 'includes/checklists/alpha/settings-discussion.php' );
 require_once( $path . 'includes/checklists/alpha/settings-media.php' );
 require_once( $path . 'includes/checklists/alpha/settings-permalinks.php' );
 require_once( $path . 'includes/checklists/alpha/settings-privacy.php' );
+require_once( $path . 'includes/checklists/alpha/settings-users.php' );
+require_once( $path . 'includes/checklists/alpha/database-setup.php' );
+require_once( $path . 'includes/checklists/alpha/plugins.php' );
+require_once( $path . 'includes/checklists/alpha/development.php' );
+require_once( $path . 'includes/checklists/alpha/page-templates.php' );
+require_once( $path . 'includes/checklists/alpha/basic-seo.php' );
 
 // EXPRESS QA ALPHA
 function eqa_alpha() { ?>
@@ -187,128 +195,179 @@ function eqa_alpha() { ?>
 			</tbody>
 		</table>
 
-
-
-		<!-- Plugins -->
+		<!-- SETTINGS - USERS -->
 		<table class="widefat striped" style="margin-top: 30px;">
 			<thead>
-				<tr>
-					<th colspan="4"><strong>Plugins -> Installed Plugins</strong></th>
-				</tr>
+				<?php
+					addChecklistTitle('Settings - Users');
+
+					addChecklistRowHeading();
+				?>
 			</thead>
+
 			<tbody>
 				<?php
-					$plugins = get_plugins();
-					$pluginList = array( "Advanced Custom Fields Pro", "Akismet Anti-Spam", "Autoptimize", "BackWPup", "Duplicator", "Gravity Forms", "Hello Dolly", "reSmush.it Image Optimizer", "Super Progressive Web Apps", "WebP Express", "Wordfence Security", "Yoast SEO" );
-					$activePlugins = get_option('active_plugins');
+					// USERS - dev-site
+					$args['target_username'] = 'dev-site';
+					$args['target_email']    = 'rik@clickclickmedia.com.au';
+					addChecklistRow( "User - dev-site", "dev-site, rik@clickclickmedia.com.au", "alpha_check_user_email", $args );
 
-					foreach ( $pluginList as $key => $p ) {
-						$isInstalled = false;
-						$isActive = false;
-						$textDomain = "";
+					// USERS - clickclickmedia
+					$args['target_username'] = 'clickclickmedia';
+					$args['target_email']    = 'clients@clickclickmedia.com.au';
+					addChecklistRow( "User - clickclickmedia", "clickclickmedia, clients@clickclickmedia.com.au", "alpha_check_user_email", $args );
+				?>
+			</tbody>
+		</table>
 
-						if ( $plugins ) {
-							foreach ( $plugins as $key => $plugin ) {
-								$apTitle = null;
-								if ( $plugin["Title"] == $p ) {
-									$isInstalled = true;
-									$textDomain = $key;
-								}
-							}
-						}
+		<!-- DATABASE - SETUP -->
+		<table class="widefat striped" style="margin-top: 30px;">
+			<thead>
+				<?php
+					addChecklistTitle('Database - Setup');
 
-						if ( in_array( $textDomain, $activePlugins ) ) {
-							$isActive = true;
-						}
+					addChecklistRowHeading();
+				?>
+			</thead>
 
-						$installedText = ( $isInstalled == true ) ? 'Installed' : 'Not Installed';
-						$activeText = ( $isActive == true ) ? 'Active' : 'Not Active';
+			<tbody>
+				<?php
+					// PRIVACY PAGE
+					addChecklistRow( "Database Prefix", "Must not be 'wp_'", "alpha_check_database_prefix" );
+				?>
+			</tbody>
+		</table>
 
-						echo "<tr>";
-						echo "<td>".$p."</td>";
-						echo "<td>".$installedText."</td>";
-						echo "<td>".$activeText."</td>";
-						echo "</tr>";
+		<!-- PLUGINS - GENERAL -->
+		<table class="widefat striped" style="margin-top: 30px;">
+			<thead>
+				<?php
+					addChecklistTitle('Plugins - General');
+
+					addChecklistRowHeading();
+				?>
+			</thead>
+
+			<tbody>
+				<?php
+					foreach (ALPHA_PLUGINS_TO_CHECK as $plugin) {
+						// Values passed to callback
+						$args['path']   = $plugin['path'];
+						$args['status'] = $plugin['status'];
+
+						$name        = $plugin['name'];
+						$status_text = ucfirst($plugin['status']);
+
+						addChecklistRow( $name, $status_text, "alpha_check_plugin", $args );
 					}
 				?>
 			</tbody>
 		</table>
 
-		<!-- USERS -->
+		<!-- PLUGINS - CLIENT SPECIFIC -->
 		<table class="widefat striped" style="margin-top: 30px;">
 			<thead>
-				<tr>
-					<th colspan="4"><strong>User Settings</strong></th>
-				</tr>
-			</thead>
-			<tbody>
 				<?php
-					//global $wpdb; var_dump($wpdb->prefix);
-					$allUsers = get_users();
-					$requiredUsers = [];
-					foreach ( $allUsers as $key => $user ) {
-						$userLogin = $user->data->user_login;
-						$userEmail = $user->data->user_email;
-						if ( $userLogin == "clickclickmedia" || $userLogin == "dev-site" ) {
-							echo "<tr>";
-							echo "<td>".$userLogin."</td>";
-							echo "<td>".$userEmail."</td>";
-							echo "<td class='check' style='font-weight: bold; font-size: 16px;'>";
-							if ( preg_match( '/\bsytian\b/', $userEmail ) ) {
-								echo "<span style='color: red;'>x</span>";
-							} else {
-								echo "<span style='color: green;'>✓</span>";
-							}
-							echo "</td>";
-							echo "</tr>";
-						}
-					}
+					addChecklistTitle('Plugins - Client Specific');
+
+					addChecklistRowHeading();
 				?>
-			</tbody>
-		</table>
-
-		<!-- OTHER SETTINGS -->
-		<table class="widefat striped" style="margin-top: 30px;">
-			<thead>
-				<tr>
-					<th colspan="4"><strong>Other Settings</strong></th>
-				</tr>
 			</thead>
+
 			<tbody>
 				<?php
-					// page settings -- blog page
+					if (getCurrentClient() == 'clickclickmedia') {
+						foreach (ALPHA_PLUGINS_TO_CHECK_CCM as $plugin) {
+							$args['path']   = $plugin['path'];
+							$args['status'] = $plugin['status'];
 
-					global $wpdb;
-					$wpPrefix = $wpdb->prefix;
+							$name        = $plugin['name'];
+							$status_text = ucfirst($plugin['status']);
 
-					echo "<tr>";
-					echo "<td>Database Prefix:</td>";
-					echo "<td>".$wpPrefix."</td>";
-					echo "<td class='check' style='font-weight: bold; font-size: 16px;'>";
-					if ( $wpPrefix == "wp_" ) {
-						echo "<span style='color: red;'>x</span>";
+							addChecklistRow( $name, $status_text, "alpha_check_plugin", $args );
+						}
+					} elseif (getCurrentClient() == 'jackpoyntz') {
+						foreach (ALPHA_PLUGINS_TO_CHECK_JP as $plugin) {
+							$args['path']   = $plugin['path'];
+							$args['status'] = $plugin['status'];
+
+							$name        = $plugin['name'];
+							$status_text = ucfirst($plugin['status']);
+
+							addChecklistRow( $name, $status_text, "alpha_check_plugin", $args );
+						}
 					} else {
-						echo "<span style='color: green;'>✓</span>";
+						echo '<tr>';
+						echo '	<td colspan="3" class="criteria">No specific plugins required for current client</td>';
+						echo '</tr>';
 					}
-					echo "</td>";
-					echo "</tr>";
-
-					$robotsUrl = get_site_url() . "/robots.txt";
 				?>
-				<tr>
-					<td>robots.txt</td>
-					<td><?php echo file_exists( $robotsUrl ) ? "Found" : "Not Found"; ?></td>
-					<td class="check" style='font-weight: bold; font-size: 16px;'><?php
-						if ( !file_exists( $robotsUrl ) ) {
-							echo "<span style='color: red;'>x</span>";
-						} else {
-							echo "<span style='color: green;'>✓</span>";
-						}
-					?></td>
-				</tr>
 			</tbody>
 		</table>
 
+		<!-- DEVELOPMENT -->
+		<table class="widefat striped" style="margin-top: 30px;">
+			<thead>
+				<?php
+					addChecklistTitle('Development');
+
+					addChecklistRowHeading();
+				?>
+			</thead>
+
+			<tbody>
+				<?php
+					// WP DEBUG
+					addChecklistRow( "WP Debug", "Must be set to false", "alpha_check_wp_debug" );
+				?>
+			</tbody>
+		</table>
+
+		<!-- PAGE TEMPLATES -->
+		<table class="widefat striped" style="margin-top: 30px;">
+			<thead>
+				<?php
+					addChecklistTitle('Page Templates');
+
+					addChecklistRowHeading();
+				?>
+			</thead>
+
+			<tbody>
+				<?php
+					// PAGE TEMPLATE - 404
+					$args = '404.php';
+					addChecklistRow( "404 Page", "404.php in theme files", "alpha_check_page_template", $args );
+
+					// PAGE TEMPLATE - THANK YOU PAGE
+					$args = array(
+						"templates/template-thank-you.php",
+						"templates/template-thankyou.php",
+						"templates/thank-you.php",
+						"templates/thankyou.php"
+					);
+					addChecklistRow( "Thank You Page", "Must be present in theme's template files", "alpha_check_page_template", $args );
+				?>
+			</tbody>
+		</table>
+
+		<!-- BASIC SEO -->
+		<table class="widefat striped" style="margin-top: 30px;">
+			<thead>
+				<?php
+					addChecklistTitle('Basic SEO');
+
+					addChecklistRowHeading();
+				?>
+			</thead>
+
+			<tbody>
+				<?php
+					// ROBOTS.TXT
+					addChecklistRow( "Robots.txt", "Must be present in theme's root directory", "alpha_check_robots", );
+				?>
+			</tbody>
+		</table>
 	</div>
 
 <?php }
