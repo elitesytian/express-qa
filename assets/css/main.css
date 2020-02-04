@@ -1,0 +1,23 @@
+@media screen{
+	.wrap .widefat td:first-child{
+		/*width: 30%;*/
+	}
+	.wrap .widefat td.check{
+		/*text-align: center;*/
+		/*width: 10%;*/
+	}
+}
+
+.wrap .criteria,
+.wrap .expected,
+.wrap .status {
+	width: 33.33%;
+}
+
+.wrap .red {
+	color: red;
+}
+
+.wrap .green {
+	color: green;
+}
