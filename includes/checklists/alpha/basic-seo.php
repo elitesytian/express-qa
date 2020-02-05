@@ -2,7 +2,7 @@
 
 // WP DEBUG
 function alpha_check_robots() {
-	$robots_url = get_site_url() . "/robots.txt";
+	$robots_url = get_home_path() . "robots.txt";
 
 	if (file_exists( $robots_url )) {
 		return addCheck();

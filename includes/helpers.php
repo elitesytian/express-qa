@@ -16,6 +16,8 @@ function getCurrentQAType() {
 
 // CHECK MARK
 function addCheck() {
+	$GLOBALS['items_passed'] += 1;
+
 	return "<span class='pass green'>&#10004;</span>";
 }
 
@@ -25,6 +27,8 @@ function addCross() {
 }
 
 function addChecklistRow($criteria, $expected, $callback, $param = null) {
+	$GLOBALS['total_items'] += 1;
+
 	echo '<tr class="checklist-row">';
 	echo '	<td class="criteria">' . $criteria . '</td>';
 	echo '	<td class="expected">' . $expected . '</td>';
@@ -41,7 +45,25 @@ function addChecklistRowHeading() {
 }
 
 function addChecklistTitle($title) {
-	echo '<tr>';
-	echo '	<th colspan="3"><strong>' . $title . '</strong></th>';
+	echo '<tr class="heading">';
+	echo '	<td colspan="3">' . $title . '</td>';
 	echo '</tr>';
 }
+
+function getProgress() {
+	$total_items  = $GLOBALS['total_items'];
+	$items_passed = $GLOBALS['items_passed']; 
+
+	$percentage = ($items_passed / $total_items) * 100 ?>
+
+	<style>
+		.progress-bar {
+			background: linear-gradient(90deg, rgba(0,115,170,1) 0%, rgba(0,115,170,1) <?php echo $percentage; ?>%, rgba(116,200,241,1) <?php echo $percentage; ?>%, rgba(116,200,241,1) 100%);
+		}
+	</style>
+
+	<div class="progress-bar">
+		<span><?php echo $items_passed . " / " . $total_items; ?></span>
+	</div>
+
+<?php }

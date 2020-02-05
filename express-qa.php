@@ -9,6 +9,9 @@
  *
  */
 
+$total_items  = 0;
+$items_passed = 0;
+
 if( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 if ( !class_exists( 'EQA' ) ) {

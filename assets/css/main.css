@@ -8,6 +8,25 @@
 	}
 }
 
+.wrap {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.wrap table {
+	order: 2;
+}
+
+.wrap .progress-bar {
+	order: 1;
+}
+
+.wrap h1,
+.wrap h2,
+.wrap h3 {
+	width: 100%;
+}
+
 .wrap .criteria,
 .wrap .expected,
 .wrap .status {
@@ -15,9 +34,31 @@
 }
 
 .wrap .red {
-	color: red;
+	color: #ca4a1f;
 }
 
 .wrap .green {
 	color: green;
+}
+
+.wrap tr.heading {
+	background-color: #0073aa;
+}
+
+.wrap tr.heading td {
+	color: #fff;
+}
+
+.progress-bar {
+	max-width: 700px;
+	padding: 10px;
+	text-align: center;
+	font-size: 20px;
+	line-height: 1;
+	font-weight: bold;
+	color: #fff;
+	border: 1px solid #808080;
+	margin: 10px 0;
+	width: 100%;
+	border-radius: 2px;
 }
