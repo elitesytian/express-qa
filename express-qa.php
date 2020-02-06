@@ -32,6 +32,7 @@ if ( !class_exists( 'EQA' ) ) {
 			include( $path . '/includes/eqa_initial.php' );
 			include( $path . '/includes/eqa_alpha.php' );
 			include( $path . '/includes/eqa_beta.php' );
+			include( $path . '/includes/eqa_speedtest.php' );
 		}
 	}
 

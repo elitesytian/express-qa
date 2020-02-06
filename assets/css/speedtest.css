@@ -1,0 +1,355 @@
+.speedtest-wrap .main {
+	/*background-color: #70bf6e;*/
+	/*box-shadow: 0 0 4px rgba(0, 0, 0, 0.14), 0 4px 8px rgba(0, 0, 0, 0.28);*/
+	padding-bottom: 2.5rem;
+	padding-top: 2.5rem;
+	text-align: center;
+	border: 1px solid #ccd0d4;
+}
+
+.speedtest-wrap .main h1 {
+	/*color: #fff;*/
+	font-size: 1.5rem;
+	font-weight: 500;
+	letter-spacing: 0.125rem;
+	text-align: center;
+	margin-bottom: 16px;
+}
+
+.speedtest-wrap img {
+	max-width: 100%;
+	height: auto;
+	margin-bottom: 20px;
+}
+
+.search-contain {
+	margin-top: 1.875rem;
+	text-align: center;
+}
+
+.search-contain input {
+	border-radius: 0.1875rem;
+	border: none;
+	flex: 1 1 auto;
+	height: auto;
+	outline: 0;
+	padding: 0.625rem 0.9375rem;
+	width: 1%;
+}
+
+.search-contain button {
+	background-color: #fff;
+	border-radius: 0.1875rem;
+	border: none;
+	color: #70bf6e;
+	font-size: 0.875rem;
+	font-weight: bold;
+	height: 100%;
+	letter-spacing: 0.0625rem;
+	outline: 0;
+	text-transform: uppercase;
+	width: 6rem;
+}
+
+.search-contain .input-group-text {
+	background-color: transparent;
+	border-radius: 0;
+	border: none;
+	padding-bottom: 0;
+	padding-left: 0.625rem;
+	padding-right: 0;
+	padding-top: 0;
+}
+
+#result {
+	padding: 3.125rem 0;
+}
+
+#result .url {
+	margin-bottom: 1.875rem;
+}
+
+#result .url .input-group-text {
+	background-color: transparent;
+	border-radius: 0;
+	border: none;
+	padding-bottom: 0;
+	padding-left: 0;
+	padding-right: 0.625rem;
+	padding-top: 0;
+}
+
+#result .url .input-group-text i {
+	color: #dcdcdc;
+	font-size: 1.75rem;
+}
+
+#result .url-value {
+	flex: 1 1 auto;
+	height: auto;
+}
+
+#result .url-value a {
+	color: #303030;
+	font-size: 1.375rem;
+	transition: all ease 0.3s;
+}
+
+#result .url-value a:hover {
+	color: #70bf6e;
+	text-decoration: none;
+}
+
+#result .result-details {
+	margin-top: 0.9375rem;
+}
+
+#result #results .card {
+	border: 0.0625rem solid rgba(0, 0, 0, 0.125);
+	border-radius: 0;
+	margin-bottom: 16px;
+	padding: 0;
+	margin-top: 0;
+	word-break: break-word;
+}
+
+#result #results .card-header {
+	border-radius: 0;
+	border: none;
+	padding: 0;
+}
+
+#result #results .btn-link {
+	padding: 5px 10px;
+	white-space: normal;
+	display: block;
+	text-align: left;
+	width: 100%;
+	border-radius: 0;
+	color: #fff;
+	background-color: #23282d;
+	border: none;
+}
+
+#result #results .btn-link:focus {
+	box-shadow: none;
+	outline-color: #23282d;
+}
+
+#result #results .btn-link:hover,
+#result #results .btn-link:focus {
+	text-decoration: none;
+}
+
+#result #results .result-container {
+	padding: 0.9375rem;
+}
+
+#result #results .result-container p {
+	color: #363636;
+	font-size: 0.75rem;
+	margin-bottom: 0.9375rem;
+}
+
+#result #results .result-container p.link {
+	margin-top: 0.625rem;
+}
+
+#result #results .result-container p.link a:hover {
+	text-decoration: none;
+}
+
+#result #results .result-container .suggestions p {
+	background-color: #f1f1f1;
+	padding: 0.625rem 0.9375rem;
+	margin-bottom: 0.3125rem;
+	margin-top: 0;
+}
+
+#result #results .result-container .suggestions p:last-of-type {
+	margin-bottom: 0;
+}
+
+#result .screenshot {
+	text-align: center;
+}
+
+#result .screenshot img {
+	border: 0.0625rem solid #ddd;
+}
+
+#result .score-item {
+	position: relative;
+	text-align: center;
+}
+
+#result h4 {
+	text-align: center;
+	margin: 0;
+}
+
+#result .score-item .circle-svg {
+	height: 12.5rem;
+	width: 12.5rem;
+}
+
+#result .score-item .circle-grey {
+	fill: none;
+	stroke: #ddd;
+	transform: rotate(135deg);
+	transform-origin: center center;
+	stroke-dasharray: 255%;
+	stroke-dashoffset: 91%;
+}
+
+#result .score-item .circle-progress {
+	fill: none;
+	stroke: green;
+	transform: rotate(135deg);
+	transform-origin: center center;
+	stroke-dasharray: 255%;
+	stroke-dashoffset: 255%;
+}
+
+#result .score-item .score-wrap {
+	display: block;
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	text-align: center;
+	width: 100%;
+	z-index: 2;
+}
+
+#result .score-item i {
+	color: #007cba;
+	font-size: 2.1875rem;
+	margin-bottom: 0.9375rem;
+}
+
+#result .score-item .score-val {
+	font-size: 2.0625rem;
+	line-height: 1;
+}
+
+#pre-loader {
+	display: none;
+	text-align: center;
+	padding: 30px 0;
+	transition: all ease 0.3s;
+}
+
+#pre-loader.active {
+	display: block;
+}
+
+.loader {
+	position: absolute;
+	top: calc(50% - 2rem);
+	left: calc(50% - 2rem);
+	width: 4rem;
+	height: 4rem;
+	border-radius: 50%;
+	perspective: 800px;
+}
+
+.inner {
+	position: absolute;
+	box-sizing: border-box;
+	width: 100%;
+	height: 100%;
+	border-radius: 50%;
+}
+
+.inner.one {
+	left: 0%;
+	top: 0%;
+	animation: rotate-one 1s linear infinite;
+	border-bottom: 3px solid #EFEFFA;
+}
+
+.inner.two {
+	right: 0%;
+	top: 0%;
+	animation: rotate-two 1s linear infinite;
+	border-right: 3px solid #EFEFFA;
+}
+
+.inner.three {
+	right: 0%;
+	bottom: 0%;
+	animation: rotate-three 1s linear infinite;
+	border-top: 3px solid #EFEFFA;
+}
+
+@keyframes rotate-one {
+	0% {
+		transform: rotateX(35deg) rotateY(-45deg) rotateZ(0deg);
+	}
+
+	100% {
+		transform: rotateX(35deg) rotateY(-45deg) rotateZ(360deg);
+	}
+}
+
+@keyframes rotate-two {
+	0% {
+		transform: rotateX(50deg) rotateY(10deg) rotateZ(0deg);
+	}
+
+	100% {
+		transform: rotateX(50deg) rotateY(10deg) rotateZ(360deg);
+	}
+}
+
+@keyframes rotate-three {
+	0% {
+		transform: rotateX(35deg) rotateY(55deg) rotateZ(0deg);
+	}
+
+	100% {
+		transform: rotateX(35deg) rotateY(55deg) rotateZ(360deg);
+	}
+}
+
+.speedtest-wrap .lds-ring {
+	display: inline-block;
+	position: relative;
+	width: 80px;
+	height: 80px;
+}
+
+.speedtest-wrap .lds-ring div {
+	box-sizing: border-box;
+	display: block;
+	position: absolute;
+	width: 64px;
+	height: 64px;
+	margin: 8px;
+	border: 8px solid #007cba;
+	border-radius: 50%;
+	animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+	border-color: #007cba transparent transparent transparent;
+}
+
+.speedtest-wrap .lds-ring div:nth-child(1) {
+	animation-delay: -0.45s;
+}
+
+.speedtest-wrap .lds-ring div:nth-child(2) {
+	animation-delay: -0.3s;
+}
+
+.speedtest-wrap .lds-ring div:nth-child(3) {
+	animation-delay: -0.15s;
+}
+
+@keyframes lds-ring {
+	0% {
+		transform: rotate(0deg);
+	}
+	100% {
+		transform: rotate(360deg);
+	}
+}
+

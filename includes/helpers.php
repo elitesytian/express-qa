@@ -4,14 +4,14 @@
 function getCurrentClient() {
 	$client = get_option("eqa_settings");
 
-	return $client['eqa_client_field'] ? $client['eqa_client_field'] : "";
+	return $client['eqa_client_field'] ? $client['eqa_client_field'] : "clickclickmedia";
 }
 
 // GET CURRENT QA TYPE
 function getCurrentQAType() {
 	$client = get_option("eqa_settings");
 
-	return $client['eqa_type_field'] ? $client['eqa_type_field'] : "";
+	return $client['eqa_type_field'] ? $client['eqa_type_field'] : "initial";
 }
 
 // CHECK MARK
@@ -58,7 +58,7 @@ function getProgress() {
 
 	<style>
 		.progress-bar {
-			background: linear-gradient(90deg, rgba(0,115,170,1) 0%, rgba(0,115,170,1) <?php echo $percentage; ?>%, rgba(116,200,241,1) <?php echo $percentage; ?>%, rgba(116,200,241,1) 100%);
+			background: linear-gradient(90deg, rgba(0,115,170,1) 0%, rgba(0,115,170,1) <?php echo $percentage; ?>%, rgba(218,218,218,1) <?php echo $percentage; ?>%, rgba(218,218,218,1) 100%);
 		}
 	</style>
 

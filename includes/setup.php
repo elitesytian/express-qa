@@ -16,6 +16,15 @@ function eqa_enqueue_scripts_styles() {
 	wp_deregister_script('jquery');
 	wp_register_script('jquery', '//code.jquery.com/jquery-3.4.1.js', false, '3.4.1', false);
 
+	$currQAType = getCurrentQAType();
+	if ($currQAType == 'speedtest') {
+		wp_enqueue_style('bootstrap-css', plugin_dir_url( __FILE__ ) . '../assets/css/vendor/bootstrap-grid.min.css');
+		wp_enqueue_style('fontawesome-css', plugin_dir_url( __FILE__ ) . '../assets/css/vendor/fontawesome.min.css');
+		wp_enqueue_style('speedtest-css', plugin_dir_url( __FILE__ ) . '../assets/css/speedtest.css');
+
+		wp_enqueue_script('speedtest-js', plugin_dir_url( __FILE__ ) . '../assets/js/speedtest.js', array('jquery'), '1', true);
+	}
+
 	$page = $_GET["page"];
 
 	if ( $page == "express-qa" ) {
@@ -60,6 +69,7 @@ function eqa_field_select_type_render() {
 		<option value='initial' <?php selected( $options['eqa_type_field'], 1 ); ?>>Initial</option>
 		<option value='alpha' <?php selected( $options['eqa_type_field'], 2 ); ?>>Alpha</option>
 		<option value='beta' <?php selected( $options['eqa_type_field'], 3 ); ?>>Beta</option>
+		<option value='speedtest' <?php selected( $options['eqa_type_field'], 4 ); ?>>Speedtest</option>
 	</select>
 
 <?php }
@@ -72,19 +82,21 @@ function eqa_settings_page() { ?>
 		<?php
 			settings_fields( 'expressQAPlugin' );
 			do_settings_sections( 'expressQAPlugin' );
-			submit_button();
+			submit_button('Apply');
 		?>
 
 	</form>
 
 	<?php
-		$currClient = getCurrentQAType();
-		if ($currClient == 'initial') {
+		$currQAType = getCurrentQAType();
+		if ($currQAType == 'initial') {
 			eqa_initial();
-		} elseif ($currClient == 'alpha') {
+		} elseif ($currQAType == 'alpha') {
 			eqa_alpha();
-		} elseif ($currClient == 'beta') {
+		} elseif ($currQAType == 'beta') {
 			eqa_beta();
+		} elseif ($currQAType == 'speedtest') {
+			eqa_speedtest();
 		} else {
 			echo "Test";
 		}
