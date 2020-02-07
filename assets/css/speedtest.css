@@ -353,3 +353,36 @@
 	}
 }
 
+
+
+
+/*NEW*/
+.metrics .value.poor {
+	color: #ff4e42;
+}
+.metrics .value.average {
+	color: #ffa400;
+}
+.metrics .value.good {
+	color: #0cce6b;
+}
+
+.metrics .value {
+	font-weight: bold;
+}
+
+.metrics ul li {
+	padding: 5px 0;
+	margin: 0;
+	display: flex;
+	border-bottom: 1px solid #ccd0d4;
+}
+
+.metrics ul li:last-of-type {
+	border-bottom: none;
+}
+
+.metrics ul li span {
+	width: 50%;
+	padding: 5px;
+}

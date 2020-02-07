@@ -14,7 +14,7 @@ function runSpeedTest($url) {
 	var domain = $url;
 	var status = 0;
 	// && domain.includes('localhost')
-	if ( domain.length > 0 && domain != '' && domain.match(/^(?:http([s]?):\/\/|www)/) && !domain.includes('localhost') ) {
+	if ( domain.length > 0 && domain != '' && domain.match(/^(?:http([s]?):\/\/|www)/) && !domain.includes('localhost') && !domain.includes('webserver') ) {
 		$.ajax({
 			url : 'https://www.googleapis.com/pagespeedonline/v1/runPagespeed',
 			type : 'GET',
@@ -24,12 +24,12 @@ function runSpeedTest($url) {
 				screenshot: true,
 				strategy: 'desktop'
 			},
-			beforeSend: function(){
+			beforeSend: function() {
 				console.log('Sending 1');
 				$('#pre-loader').addClass('active');
 				$('#result').hide();
 			},
-			success: function(desktop){
+			success: function(desktop) {
 
 				console.log('Success 1');
 
@@ -231,4 +231,117 @@ function customAccordion() {
 		$(this).parent().next().slideDown();
 		return false;
 	});
+}
+
+
+
+// UPDATED FUNCTIONS
+
+function queryPageSpeed(url) {
+	var domain = url;
+
+	// New
+	if ( domain.length > 0 && domain != '' && domain.match(/^(?:http([s]?):\/\/|www)/) && !domain.includes('localhost') && !domain.includes('webserver') ) {
+
+		var desktop = '';
+		var mobile  = '';
+
+		$('#pre-loader').addClass('active');
+		$('.results-new').hide();
+
+		$.when(
+			// Desktop
+			$.ajax({
+				url : 'https://www.googleapis.com/pagespeedonline/v5/runPagespeed',
+				type : 'GET',
+				dataType: 'json',
+				data : {
+					url : domain,
+					screenshot: true,
+					strategy: 'desktop'
+				},
+				beforeSend: function() {
+					console.log('Desktop Start');
+				},
+				success: function(response_desktop) {
+					$('.results-new .results-desktop .summary').html('');
+					desktop = getPageSpeedLabData(response_desktop);
+
+					console.log('Desktop End');
+				}
+			}),
+
+			// Mobile
+			$.ajax({
+				url : 'https://www.googleapis.com/pagespeedonline/v5/runPagespeed',
+				type : 'GET',
+				dataType: 'json',
+				data : {
+					url : domain,
+					screenshot: true,
+					strategy: 'mobile'
+				},
+				beforeSend: function() {
+					console.log('Mobile Start');
+				},
+				success: function(response_mobile) {
+					$('.results-new .results-mobile .summary').html('');
+					mobile = getPageSpeedLabData(response_mobile);
+
+					console.log('Mobile End');
+				}
+			}),
+		).then(function() {
+			$('#pre-loader').removeClass('active');
+
+			$('.results-new').show();
+			$('.results-new .results-desktop h3').show();
+			$('.results-new .results-mobile h3').show();
+
+			$('.results-new .results-desktop .summary').html(desktop);
+			$('.results-new .results-mobile .summary').html(mobile);
+		});
+	} else {
+		alert('Your site is currently in an invalid location (eg. localhost). It must be http or https.');
+	}
+}
+
+function getPageSpeedLabData(data) {
+	var htmlProcessed = '';
+
+	// GET AUDIT REFS FOR METRICS
+	var auditRefs = data.lighthouseResult.categories.performance.auditRefs;
+
+	var auditRefs_IDs = [];
+
+	for (var i = 0; i < auditRefs.length; i++) {
+		if (auditRefs[i].group == 'metrics') {
+			auditRefs_IDs.push(auditRefs[i].id);
+		}
+	}
+
+	// GET AUDITS FOR LAB DATA
+	var audits = data.lighthouseResult.audits;
+
+	htmlProcessed += '<div class="metrics"><ul>';
+
+	auditRefs_IDs.forEach(function(item, index) {
+		var custom_class = '';
+		if (audits[item] != null) {
+
+			if (audits[item].score >= 0 && audits[item].score <= 0.49) {
+				custom_class = 'poor';
+			} else if (audits[item].score >= 0.5 && audits[item].score <= 0.89) {
+				custom_class = 'average';
+			} else if (audits[item].score >= 0.9 && audits[item].score <= 1) {
+				custom_class = 'good';
+			}
+
+			htmlProcessed += '<li><span class="title">' + audits[item].title + '</span><span class="value ' + custom_class + '">' + audits[item].displayValue + '</span></li>';
+		}
+	});
+
+	htmlProcessed += '</div></ul>';
+
+	return htmlProcessed;
 }

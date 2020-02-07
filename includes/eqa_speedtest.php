@@ -85,17 +85,33 @@ function eqa_speedtest() { ?>
 				</div>
 			</section>
 
+			<div class="results-new">
+				<div class="container">
+					<div class="row">
+						<div class="col-12 col-md-6 results-desktop">
+							<h3 style="display: none;">Desktop</h3>
+							<div class="summary"></div>
+						</div>
+						<div class="col-12 col-md-6 results-mobile">
+							<h3 style="display: none;">Mobile</h3>
+							<div class="summary"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+
 		</div>
 	</div>
 
 	<?php
-		$site_path = get_site_url();
+		// $site_path = get_site_url();
+		$site_path = 'https://dev.clickclick.media/_websites/perimeter-systems/';
 	?>
 
 	<script>
 		$('#run-test-button').click(function() {
-			console.log('Click');
-			runSpeedTest('<?php echo $site_path; ?>');
+			// runSpeedTest('<?php //echo $site_path; ?>');
+			queryPageSpeed('<?php echo $site_path; ?>');
 		});
 	</script>
 
