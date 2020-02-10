@@ -1,0 +1,157 @@
+/*LOADER*/
+.speedtest-wrap .lds-ring {
+	display: inline-block;
+	position: relative;
+	width: 80px;
+	height: 80px;
+}
+
+.speedtest-wrap .lds-ring div {
+	box-sizing: border-box;
+	display: block;
+	position: absolute;
+	width: 64px;
+	height: 64px;
+	margin: 8px;
+	border: 8px solid #007cba;
+	border-radius: 50%;
+	animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+	border-color: #007cba transparent transparent transparent;
+}
+
+.speedtest-wrap .lds-ring div:nth-child(1) {
+	animation-delay: -0.45s;
+}
+
+.speedtest-wrap .lds-ring div:nth-child(2) {
+	animation-delay: -0.3s;
+}
+
+.speedtest-wrap .lds-ring div:nth-child(3) {
+	animation-delay: -0.15s;
+}
+
+@keyframes lds-ring {
+	0% {
+		transform: rotate(0deg);
+	}
+	100% {
+		transform: rotate(360deg);
+	}
+}
+
+/*METRICS*/
+.metrics .score.poor {
+	color: #ff4e42;
+}
+
+.metrics .score.average {
+	color: #ffa400;
+}
+
+.metrics .score.good {
+	color: #0cce6b;
+}
+
+.metrics .score {
+	font-weight: bold;
+}
+
+.metrics ul li {
+	padding: 5px 0;
+	margin: 0;
+	display: flex;
+	border-bottom: 1px solid #ccd0d4;
+}
+
+.metrics ul li:last-of-type {
+	border-bottom: none;
+}
+
+.metrics ul li span {
+	width: 50%;
+	padding: 5px;
+}
+
+/*MAIN*/
+.speedtest-wrap .main {
+	padding-bottom: 2.5rem;
+	padding-top: 2.5rem;
+	text-align: center;
+	border: 1px solid #ccd0d4;
+}
+
+.speedtest-wrap .main h1 {
+	/*color: #fff;*/
+	font-size: 1.5rem;
+	font-weight: 500;
+	letter-spacing: 0.125rem;
+	text-align: center;
+	margin-bottom: 16px;
+}
+
+/*LOADER*/
+.speedtest-wrap #pre-loader {
+	display: none;
+	text-align: center;
+	padding: 30px 0;
+	transition: all ease 0.3s;
+}
+
+.speedtest-wrap #pre-loader.active {
+	display: block;
+}
+
+/*SCORES*/
+.results-new .scores h4 {
+	text-align: center;
+}
+
+.results-new .scores .score-item {
+	position: relative;
+	text-align: center;
+}
+
+.results-new .scores .score-item .circle-svg {
+	height: 12.5rem;
+	width: 12.5rem;
+}
+
+.results-new .scores .score-item .circle-grey {
+	fill: none;
+	stroke: #ddd;
+	transform: rotate(135deg);
+	transform-origin: center center;
+	stroke-dasharray: 255%;
+	stroke-dashoffset: 91%;
+}
+
+.results-new .scores .score-item .circle-progress {
+	fill: none;
+	stroke: green;
+	transform: rotate(135deg);
+	transform-origin: center center;
+	stroke-dasharray: 255%;
+	stroke-dashoffset: 255%;
+}
+
+.results-new .scores .score-item .score-wrap {
+	display: block;
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	text-align: center;
+	width: 100%;
+	z-index: 2;
+}
+
+.results-new .scores .score-item i {
+	color: #007cba;
+	font-size: 2.1875rem;
+	margin-bottom: 0.9375rem;
+}
+
+.results-new .scores .score-item .score-val {
+	font-size: 2.0625rem;
+	line-height: 1;
+}

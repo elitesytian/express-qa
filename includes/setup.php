@@ -20,9 +20,9 @@ function eqa_enqueue_scripts_styles() {
 	if ($currQAType == 'speedtest') {
 		wp_enqueue_style('bootstrap-css', plugin_dir_url( __FILE__ ) . '../assets/css/vendor/bootstrap-grid.min.css');
 		wp_enqueue_style('fontawesome-css', plugin_dir_url( __FILE__ ) . '../assets/css/vendor/fontawesome.min.css');
-		wp_enqueue_style('speedtest-css', plugin_dir_url( __FILE__ ) . '../assets/css/speedtest.css');
+		wp_enqueue_style('speedtest-v5-css', plugin_dir_url( __FILE__ ) . '../assets/css/speedtest-v5.css');
 
-		wp_enqueue_script('speedtest-js', plugin_dir_url( __FILE__ ) . '../assets/js/speedtest.js', array('jquery'), '1', true);
+		wp_enqueue_script('speedtest-v5-js', plugin_dir_url( __FILE__ ) . '../assets/js/speedtest-v5.js', array('jquery'), '1', true);
 	}
 
 	$page = $_GET["page"];
@@ -56,8 +56,8 @@ function eqa_field_select_client_render() {
 
 	<select name='eqa_settings[eqa_client_field]'>
 		<option value='clickclickmedia' <?php selected( $options['eqa_client_field'], 1 ); ?>>ClickClickMedia</option>
-		<option value='jackpoyntz' <?php selected( $options['eqa_client_field'], 2 ); ?>>Placeholder 1</option>
-		<option value='veedigital' <?php selected( $options['eqa_client_field'], 3 ); ?>>Placeholder 2</option>
+		<option value='jackpoyntz' <?php selected( $options['eqa_client_field'], 2 ); ?>>Jackpoyntz</option>
+		<option value='veedigital' <?php selected( $options['eqa_client_field'], 3 ); ?>>VeeDigital</option>
 	</select>
 
 <?php }
