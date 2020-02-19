@@ -41,6 +41,8 @@ function queryPageSpeed(url) {
 
 					getPageSpeedScore(response_desktop, $('#desktop-score'));
 
+					getLastFiveResults(response_desktop);
+
 					console.log('Desktop End');
 				}
 			}),
@@ -62,6 +64,8 @@ function queryPageSpeed(url) {
 					mobile_labdata = getPageSpeedLabData(response_mobile);
 
 					getPageSpeedScore(response_mobile, $('#mobile-score'));
+
+					getLastFiveResults(response_mobile);
 
 					console.log('Mobile End');
 				}
@@ -126,11 +130,7 @@ function getPageSpeedLabData(data) {
 function getPageSpeedScore(data, target) {
 	var score_raw = data.lighthouseResult.categories.performance.score;
 
-	console.log(score_raw);
-
 	var score = parseInt((score_raw * 10000) / 100);
-
-	console.log(score);
 
 	if ( score >= 0 && score <= 49 ) {
 		// Low
@@ -177,14 +177,36 @@ function getPageSpeedScore(data, target) {
 			'color' : '#007cba'
 		});
 	}
-	setTimeout(function(){
-		target.find('.circle-progress').animate({
-			strokeDashoffset: (255 - 1.64*score) + "%"
-		},
-		{
-			//animation setting
-			duration: 800,
-			easing:'linear'
-		});
+	setTimeout(function() {
+		target.find('.circle-progress').animate(
+			{
+				strokeDashoffset: (255 - 1.64*score) + "%"
+			},
+			{
+				duration: 800,
+				easing:'linear'
+			}
+		);
 	}, 800);
+}
+
+function getLastFiveResults(data) {
+	var fcp   = data.lighthouseResult.audits['first-contentful-paint'].displayValue;
+	var fmp   = data.lighthouseResult.audits['first-meaningful-paint'].displayValue;
+	var si    = data.lighthouseResult.audits['speed-index'].displayValue;
+	var tti   = data.lighthouseResult.audits['interactive'].displayValue;
+	var fci   = data.lighthouseResult.audits['first-cpu-idle'].displayValue;
+	var mpfid = data.lighthouseResult.audits['max-potential-fid'].displayValue;
+
+	var score_raw = data.lighthouseResult.categories.performance.score;
+	var score     = parseInt((score_raw * 10000) / 100);
+
+	console.log('First Contentful Paint: ' + fcp);
+	console.log('First Meaningful Paint: ' + fmp);
+	console.log('Speed Index: ' + si);
+	console.log('Time to Interactive: ' + tti);
+	console.log('First CPU Idle: ' + fci);
+	console.log('Max Potential First Input Delay: ' + mpfid);
+
+	console.log('Score: ' + score);
 }
