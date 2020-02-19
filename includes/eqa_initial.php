@@ -22,6 +22,8 @@ function eqa_initial() { ?>
 				<?php
 					addChecklistTitle('Settings - General');
 					addChecklistRowHeading();
+					// SITE TITLE
+					addChecklistRow( "Site Title", "Not empty", "initial_check_site_title" );
 					// TAGLINE
 					addChecklistRow( "Tagline", "Empty unless specified", "initial_check_tagline" );
 					// FAVICON
@@ -35,15 +37,17 @@ function eqa_initial() { ?>
 					addChecklistTitle('Users - Email');
 					addChecklistRowHeading();
 					// USER EMAIL
-					$user_email = 'Nothing set';
+					$args['target_username'] = 'dev-site';
+					$args['target_email']    = 'rik@clickclickmedia.com.au';
+
 					if (getCurrentClient() == 'clickclickmedia') {
-						$user_email = 'rik@clickclickmedia.com.au';
+						$args['target_email']    = 'rik@clickclickmedia.com.au';
 					} elseif (getCurrentClient() == 'jackpoyntz') {
-						$user_email = 'dev.jackpoyntz@gmail.com';
+						$args['target_email']    = 'dev.jackpoyntz@gmail.com';
 					} elseif (getCurrentClient() == 'veedigital') {
-						$user_email = 'yukis@veedigital.com';
+						$args['target_email']    = 'yukis@veedigital.com';
 					}
-					addChecklistRow( "User Email", "$user_email", "initial_check_user_email" );
+					addChecklistRow( "User Email", $args['target_email'], "initial_check_user_email", $args );
 
 
 					addChecklistTitle('Appearance - Theme');
@@ -122,5 +126,4 @@ function eqa_initial() { ?>
 		<h3>Checklist Progress</h3>
 		<?php getProgress(); ?>
 	</div>
-
 <?php }

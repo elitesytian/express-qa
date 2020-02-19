@@ -69,13 +69,13 @@ function eqa_alpha() { ?>
 					}
 
 					// EMAIL ADDRESS
-					addChecklistRow( "Email Address", "$user_email", "alpha_check_email_address" );
+					// addChecklistRow( "Email Address", "$user_email", "alpha_check_email_address" );
 					// DATE FORMAT
-					addChecklistRow( "Date Format", "d/m/Y", "alpha_check_date_format" );
+					// addChecklistRow( "Date Format", "d/m/Y", "alpha_check_date_format" );
 					// TIMEZONE
 					addChecklistRow( "Timezone", $timezone, "alpha_check_timezone" );
 					// START OF WEEK
-					addChecklistRow( "Start of Week", "Sunday", "alpha_check_start_of_week" );
+					// addChecklistRow( "Start of Week", "Sunday", "alpha_check_start_of_week" );
 					// SITE LANGUAGE
 					addChecklistRow( "Site Language", $site_language, "alpha_check_site_language" );
 					// POSTS PER PAGE
