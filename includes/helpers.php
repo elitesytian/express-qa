@@ -14,6 +14,17 @@ function getCurrentQAType() {
 	return $client['eqa_type_field'] ? $client['eqa_type_field'] : "initial";
 }
 
+// CHECK IF TAGLINE IS CHECKED
+function checkIfTaglineShouldBeEmpty() {
+	$tagline = get_option("eqa_settings");
+
+	if ($tagline['eqa_tagline_field'] == 1) {
+		return true;
+	} else {
+		return false;
+	}
+}
+
 // CHECK MARK
 function addCheck() {
 	$GLOBALS['items_passed'] += 1;
