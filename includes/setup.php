@@ -41,6 +41,7 @@ function eqa_settings_init() {
 	add_settings_section( 'eqaPlugin_section', 'Control Panel', 'eqaPlugin_section_callback', 'expressQAPlugin' );
 
 	add_settings_field( 'eqa_field_select_client', 'Client', 'eqa_field_select_client_render', 'expressQAPlugin', 'eqaPlugin_section' );
+	add_settings_field( 'eqa_field_checkbox_tagline', 'Tagline provided?', 'eqa_field_checkbox_tagline_render', 'expressQAPlugin', 'eqaPlugin_section' );
 	add_settings_field( 'eqa_field_select_type', 'QA Type', 'eqa_field_select_type_render', 'expressQAPlugin', 'eqaPlugin_section' );
 }
 
@@ -50,27 +51,36 @@ function eqaPlugin_section_callback() {
 
 // CUSTOM FIELDS
 function eqa_field_select_client_render() {
-	// EXPECTED VALUES - clickclickmedia, jackpoyntz, veedigital
 
+	// EXPECTED VALUES - clickclickmedia, jackpoyntz, veedigital
 	$options = get_option( 'eqa_settings' ); ?>
 
 	<select name='eqa_settings[eqa_client_field]'>
-		<option value='clickclickmedia' <?php selected( $options['eqa_client_field'], 1 ); ?>>ClickClickMedia</option>
-		<option value='jackpoyntz' <?php selected( $options['eqa_client_field'], 2 ); ?>>Jackpoyntz</option>
-		<option value='veedigital' <?php selected( $options['eqa_client_field'], 3 ); ?>>VeeDigital</option>
+		<option value='clickclickmedia' <?php selected( $options['eqa_client_field'], 'clickclickmedia', true ); ?>>ClickClickMedia</option>
+		<option value='jackpoyntz' <?php selected( $options['eqa_client_field'], 'jackpoyntz', true ); ?>>Jackpoyntz</option>
+		<option value='veedigital' <?php selected( $options['eqa_client_field'], 'veedigital', true ); ?>>VeeDigital</option>
 	</select>
 
 <?php }
 
 function eqa_field_select_type_render() {
+
 	$options = get_option( 'eqa_settings' ); ?>
 
 	<select name='eqa_settings[eqa_type_field]'>
-		<option value='initial' <?php selected( $options['eqa_type_field'], 1 ); ?>>Initial</option>
-		<option value='alpha' <?php selected( $options['eqa_type_field'], 2 ); ?>>Alpha</option>
-		<option value='beta' <?php selected( $options['eqa_type_field'], 3 ); ?>>Beta</option>
-		<option value='speedtest' <?php selected( $options['eqa_type_field'], 4 ); ?>>Speedtest</option>
+		<option value='initial' <?php selected( $options['eqa_type_field'], 'initial', true ); ?>>Initial</option>
+		<option value='alpha' <?php selected( $options['eqa_type_field'], 'alpha', true ); ?>>Alpha</option>
+		<option value='beta' <?php selected( $options['eqa_type_field'], 'beta', true ); ?>>Beta</option>
+		<option value='speedtest' <?php selected( $options['eqa_type_field'], 'speedtest', true ); ?>>Speedtest</option>
 	</select>
+
+<?php }
+
+function eqa_field_checkbox_tagline_render() {
+
+	$options = get_option( 'eqa_settings' ); ?>
+
+	<input type="checkbox" id="eqa_tagline_field" name="eqa_settings[eqa_tagline_field]" value="1" <?php checked( 1, $options['eqa_tagline_field'], true ); ?>/>
 
 <?php }
 
@@ -82,7 +92,7 @@ function eqa_settings_page() { ?>
 		<?php
 			settings_fields( 'expressQAPlugin' );
 			do_settings_sections( 'expressQAPlugin' );
-			submit_button('Apply');
+			submit_button('Apply Settings');
 		?>
 
 	</form>
