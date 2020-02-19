@@ -6,11 +6,11 @@ define('BETA_PLUGINS_TO_CHECK', array(
 		'path'   => 'advanced-custom-fields-pro/acf.php',
 		'status' => 'active'
 	),
-	array(
-		'name'   => 'Autoptimize',
-		'path'   => 'autoptimize/autoptimize.php',
-		'status' => 'installed'
-	),
+	// array(
+	// 	'name'   => 'Autoptimize',
+	// 	'path'   => 'autoptimize/autoptimize.php',
+	// 	'status' => 'installed'
+	// ),
 	array(
 		'name'   => 'Yoast SEO',
 		'path'   => 'wordpress-seo/wp-seo.php',
@@ -21,11 +21,11 @@ define('BETA_PLUGINS_TO_CHECK', array(
 		'path'   => 'duplicator-pro/duplicator-pro.php',
 		'status' => 'installed'
 	),
-	array(
-		'name'   => 'reSmush.it Image Optimizer',
-		'path'   => 'resmushit-image-optimizer/resmushit.php',
-		'status' => 'active'
-	),
+	// array(
+	// 	'name'   => 'reSmush.it Image Optimizer',
+	// 	'path'   => 'resmushit-image-optimizer/resmushit.php',
+	// 	'status' => 'active'
+	// ),
 	array(
 		'name'   => 'Akismet Anti-Spam',
 		'path'   => 'akismet/akismet.php',

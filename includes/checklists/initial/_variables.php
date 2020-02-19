@@ -11,11 +11,11 @@ define('INITIAL_PLUGINS_TO_CHECK', array(
 		'path'   => 'akismet/akismet.php',
 		'status' => 'installed'
 	),
-	array(
-		'name'   => 'Autoptimize',
-		'path'   => 'autoptimize/autoptimize.php',
-		'status' => 'installed'
-	),
+	// array(
+	// 	'name'   => 'Autoptimize',
+	// 	'path'   => 'autoptimize/autoptimize.php',
+	// 	'status' => 'installed'
+	// ),
 	array(
 		'name'   => 'Brozzme DB Prefix change and DB Tools addon',
 		'path'   => 'brozzme-db-prefix-change/brozzme_db_prefix.php',
@@ -31,11 +31,11 @@ define('INITIAL_PLUGINS_TO_CHECK', array(
 		'path'   => 'super-progressive-web-apps/superpwa.php',
 		'status' => 'installed'
 	),
-	array(
-		'name'   => 'reSmush.it Image Optimizer',
-		'path'   => 'resmushit-image-optimizer/resmushit.php',
-		'status' => 'active'
-	),
+	// array(
+	// 	'name'   => 'reSmush.it Image Optimizer',
+	// 	'path'   => 'resmushit-image-optimizer/resmushit.php',
+	// 	'status' => 'active'
+	// ),
 	array(
 		'name'   => 'Yoast SEO',
 		'path'   => 'wordpress-seo/wp-seo.php',
@@ -45,11 +45,11 @@ define('INITIAL_PLUGINS_TO_CHECK', array(
 
 // PLUGINS - CLICKCLICKMEDIA
 define('INITIAL_PLUGINS_TO_CHECK_CCM', array(
-	array(
-		'name'   => 'Comet Cache Pro',
-		'path'   => 'comet-cache-pro/comet-cache-pro.php',
-		'status' => 'installed'
-	),
+	// array(
+	// 	'name'   => 'Comet Cache Pro',
+	// 	'path'   => 'comet-cache-pro/comet-cache-pro.php',
+	// 	'status' => 'installed'
+	// ),
 	array(
 		'name'   => 'Gravity Forms',
 		'path'   => 'gravityforms/gravityforms.php',
