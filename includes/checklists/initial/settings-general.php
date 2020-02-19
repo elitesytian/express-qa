@@ -1,13 +1,32 @@
 <?php
 
+// SITE TITLE
+function initial_check_site_title() {
+	$site_name = get_bloginfo('name');
+
+	if ($site_name != '') {
+		return addCheck();
+	} else {
+		return addCross();
+	}
+}
+
 // TAGLINE
 function initial_check_tagline() {
 	$tagline = get_bloginfo('description');
 
-	if ($tagline == "") {
-		return addCheck();
+	if (checkIfTaglineShouldBeEmpty()) {
+		if ($tagline != "") {
+			return addCheck();
+		} else {
+			return addCross();
+		}
 	} else {
-		return addCross();
+		if ($tagline == "") {
+			return addCheck();
+		} else {
+			return addCross();
+		}
 	}
 }
 

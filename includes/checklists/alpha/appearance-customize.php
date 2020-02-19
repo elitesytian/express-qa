@@ -15,10 +15,18 @@ function alpha_check_site_title() {
 function alpha_check_tagline() {
 	$site_tagline = get_bloginfo('description');
 
-	if ($site_tagline == '') {
-		return addCheck();
+	if (checkIfTaglineShouldBeEmpty()) {
+		if ($site_tagline != "") {
+			return addCheck();
+		} else {
+			return addCross();
+		}
 	} else {
-		return addCross();
+		if ($site_tagline == "") {
+			return addCheck();
+		} else {
+			return addCross();
+		}
 	}
 }
 

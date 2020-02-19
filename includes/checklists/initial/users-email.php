@@ -1,34 +1,23 @@
 <?php
 
 // USER EMAIL
-function initial_check_user_email() {
+function initial_check_user_email($args) {
 	$allUsers = get_users();
+
+	$target_username = $args['target_username'];
+	$target_email    = $args['target_email'];
 
 	foreach ($allUsers as $user) {
 		$user_login = $user->user_login;
 		$user_email = $user->user_email;
-		$user_roles = $user->roles;
 
-		if (in_array("administrator", $user_roles)) {
-			if (getCurrentClient() == 'clickclickmedia') {
-				if ($user_email == "rik@clickclickmedia.com.au") {
-					return addCheck();
-					break;
-				}
-			} elseif (getCurrentClient() == 'jackpoyntz') {
-				if ($user_email == "dev.jackpoyntz@gmail.com") {
-					return addCheck();
-					break;
-				}
-			} elseif (getCurrentClient() == 'veedigital') {
-				if ($user_email == "yukis@veedigital.com") {
-					return addCheck();
-					break;
-				}
-			} else {
-				return addCross();
-			}
+		if ($user_login == $target_username && $user_email == $target_email) {
+			$output = addCheck();
+			break;
+		} else {
+			$output = addCross();
 		}
-
 	}
+
+	return $output;
 }

@@ -2,34 +2,23 @@
 
 // USER EMAIL
 function alpha_check_email_address() {
-	$allUsers = get_users();
 
-	foreach ($allUsers as $user) {
-		$user_login = $user->user_login;
-		$user_email = $user->user_email;
-		$user_roles = $user->roles;
+	$user_email = get_bloginfo('admin_email');
 
-		if (in_array("administrator", $user_roles)) {
-			if (getCurrentClient() == 'clickclickmedia') {
-				if ($user_email == "rik@clickclickmedia.com.au") {
-					return addCheck();
-					break;
-				}
-			} elseif (getCurrentClient() == 'jackpoyntz') {
-				if ($user_email == "dev.jackpoyntz@gmail.com") {
-					return addCheck();
-					break;
-				}
-			} elseif (getCurrentClient() == 'veedigital') {
-				if ($user_email == "yukis@veedigital.com") {
-					return addCheck();
-					break;
-				}
-			} else {
-				return addCross();
-			}
+	if (getCurrentClient() == 'clickclickmedia') {
+		if ($user_email == "rik@clickclickmedia.com.au") {
+			return addCheck();
 		}
-
+	} elseif (getCurrentClient() == 'jackpoyntz') {
+		if ($user_email == "dev.jackpoyntz@gmail.com") {
+			return addCheck();
+		}
+	} elseif (getCurrentClient() == 'veedigital') {
+		if ($user_email == "yukis@veedigital.com") {
+			return addCheck();
+		}
+	} else {
+		return addCross();
 	}
 }
 
@@ -48,7 +37,7 @@ function alpha_check_date_format() {
 function alpha_check_timezone() {
 	$timezone_string = get_option('timezone_string');
 
-	$client_timezone = '';
+	$client_timezone = 'Australia';
 	if (getCurrentClient() == 'clickclickmedia') {
 		$client_timezone = 'Australia';
 	} elseif (getCurrentClient() == 'jackpoyntz') {
