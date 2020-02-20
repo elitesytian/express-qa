@@ -8,7 +8,6 @@ function eqa_speedtest() { ?>
 		<h3>Pagespeed Insights</h3>
 
 		<div class="speedtest-wrap">
-
 			<section class="main">
 				<div class="container">
 					<div class="row">
@@ -73,13 +72,28 @@ function eqa_speedtest() { ?>
 					</div>
 				</div>
 			</div>
-
 		</div>
+
+		<!-- <div class="container">
+			<div class="previous-results">
+				<table class="table">
+					<thead>
+						<tr>
+							<td>Setting</td>
+							<td colspan="5">Previous Results</td>
+						</tr>
+					</thead>
+					<tbody>
+						<?php //getPreviousResults('fcp', 'desktop', 'First Contentful Paint'); ?>
+					</tbody>
+				</table>
+			</div>
+		</div> -->
 	</div>
 
 	<?php
-		// $site_path = get_site_url();
-		$site_path = 'https://www.google.com/';
+		$site_path = get_site_url();
+		// $site_path = 'https://www.google.com/';
 	?>
 
 	<script>
