@@ -77,4 +77,22 @@ function getProgress() {
 		<span><?php echo $items_passed . " / " . $total_items; ?></span>
 	</div>
 
-<?php }
+	<?php
+}
+
+function getPreviousResults($data, $type, $label) {
+	$setting_name = 'eqa_pagespeed_' . $type . '_' . $data;
+
+	$option = get_option($setting_name);
+
+	if ($option) { ?>
+
+		<tr>
+			<td><?php echo $label; ?></td>
+			<?php for ($i=0; $i < 5; $i++) { ?>
+				<td><?php echo $option[$i]; ?></td>
+			<?php } ?>
+		</tr>
+
+	<?php }
+}
