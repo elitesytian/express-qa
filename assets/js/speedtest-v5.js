@@ -41,7 +41,7 @@ function queryPageSpeed(url) {
 
 					getPageSpeedScore(response_desktop, $('#desktop-score'));
 
-					getLastFiveResults(response_desktop);
+					getLastFiveResults(response_desktop, 'desktop');
 
 					console.log('Desktop End');
 				}
@@ -65,7 +65,7 @@ function queryPageSpeed(url) {
 
 					getPageSpeedScore(response_mobile, $('#mobile-score'));
 
-					getLastFiveResults(response_mobile);
+					getLastFiveResults(response_mobile, 'mobile');
 
 					console.log('Mobile End');
 				}
@@ -190,7 +190,7 @@ function getPageSpeedScore(data, target) {
 	}, 800);
 }
 
-function getLastFiveResults(data) {
+function getLastFiveResults(data, test_type) {
 	var fcp   = data.lighthouseResult.audits['first-contentful-paint'].displayValue;
 	var fmp   = data.lighthouseResult.audits['first-meaningful-paint'].displayValue;
 	var si    = data.lighthouseResult.audits['speed-index'].displayValue;
@@ -199,14 +199,101 @@ function getLastFiveResults(data) {
 	var mpfid = data.lighthouseResult.audits['max-potential-fid'].displayValue;
 
 	var score_raw = data.lighthouseResult.categories.performance.score;
-	var score     = parseInt((score_raw * 10000) / 100);
+	var os        = parseInt((score_raw * 10000) / 100);
 
-	console.log('First Contentful Paint: ' + fcp);
-	console.log('First Meaningful Paint: ' + fmp);
-	console.log('Speed Index: ' + si);
-	console.log('Time to Interactive: ' + tti);
-	console.log('First CPU Idle: ' + fci);
-	console.log('Max Potential First Input Delay: ' + mpfid);
-
-	console.log('Score: ' + score);
+	$.when(
+		// SAVE FCP DATA
+		$.ajax({
+			url: ajax_object.ajax_url,
+			type: 'POST',
+			data: {
+				action: 'storeFCPData',
+				fcp: fcp,
+				test_type: test_type,
+			},
+			beforeSend: function() {},
+			success: function(response) {},
+			error: function(response) {}
+		}),
+		// SAVE FMP DATA
+		$.ajax({
+			url: ajax_object.ajax_url,
+			type: 'POST',
+			data: {
+				action: 'storeFMPData',
+				fmp: fmp,
+				test_type: test_type,
+			},
+			beforeSend: function() {},
+			success: function(response) {},
+			error: function(response) {}
+		}),
+		// SAVE SI DATA
+		$.ajax({
+			url: ajax_object.ajax_url,
+			type: 'POST',
+			data: {
+				action: 'storeSIData',
+				si: si,
+				test_type: test_type,
+			},
+			beforeSend: function() {},
+			success: function(response) {},
+			error: function(response) {}
+		}),
+		// SAVE TTI DATA
+		$.ajax({
+			url: ajax_object.ajax_url,
+			type: 'POST',
+			data: {
+				action: 'storeTTIData',
+				tti: tti,
+				test_type: test_type,
+			},
+			beforeSend: function() {},
+			success: function(response) {},
+			error: function(response) {}
+		}),
+		// SAVE FCI DATA
+		$.ajax({
+			url: ajax_object.ajax_url,
+			type: 'POST',
+			data: {
+				action: 'storeFCIData',
+				fci: fci,
+				test_type: test_type,
+			},
+			beforeSend: function() {},
+			success: function(response) {},
+			error: function(response) {}
+		}),
+		// SAVE MPFID DATA
+		$.ajax({
+			url: ajax_object.ajax_url,
+			type: 'POST',
+			data: {
+				action: 'storeMPFIDData',
+				mpfid: mpfid,
+				test_type: test_type,
+			},
+			beforeSend: function() {},
+			success: function(response) {},
+			error: function(response) {}
+		}),
+		// SAVE OS DATA
+		$.ajax({
+			url: ajax_object.ajax_url,
+			type: 'POST',
+			data: {
+				action: 'storeOSData',
+				os: os,
+				test_type: test_type,
+			},
+			beforeSend: function() {},
+			success: function(response) {},
+			error: function(response) {}
+		}),
+	).then(function() {
+		console.log('All Operations Successful!');
+	});
 }
