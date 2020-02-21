@@ -155,3 +155,23 @@
 	font-size: 2.0625rem;
 	line-height: 1;
 }
+
+.previous-results {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.previous-results .desktop-results,
+.previous-results .mobile-results {
+	width: 100%;
+}
+
+.previous-results .desktop-results tr,
+.previous-results .mobile-results tr {
+	padding: 5px 0;
+}
+
+.previous-results .desktop-results tr td,
+.previous-results .mobile-results tr td {
+	padding: 5px;
+}
