@@ -1,6 +1,7 @@
 // READY
 $(document).ready(function() {
 	$('.results-new').hide();
+	$('.previous-results').hide();
 });
 
 // LOAD
@@ -21,6 +22,7 @@ function queryPageSpeed(url) {
 
 		$('#pre-loader').addClass('active');
 		$('.results-new').hide();
+		$('.previous-results').hide();
 
 		$.when(
 			// Desktop
@@ -294,6 +296,52 @@ function getLastFiveResults(data, test_type) {
 			error: function(response) {}
 		}),
 	).then(function() {
+
+		displayLastFiveResults();
+
 		console.log('All Operations Successful!');
+
+	});
+}
+
+function displayLastFiveResults() {
+	$.when(
+		// DESKTOP
+		$.ajax({
+			url: ajax_object.ajax_url,
+			type: 'POST',
+			data: {
+				action: 'getAllPreviousResults',
+				result_type: 'desktop',
+			},
+			beforeSend: function() {},
+			success: function(response) {
+				if (response !== '') {
+					$('.previous-results .desktop-results tbody').empty();
+					$('.previous-results .desktop-results tbody').append(response);
+				}
+			},
+			error: function(response) {}
+		}),
+		// MOBILE
+		$.ajax({
+			url: ajax_object.ajax_url,
+			type: 'POST',
+			data: {
+				action: 'getAllPreviousResults',
+				result_type: 'mobile',
+			},
+			beforeSend: function() {},
+			success: function(response) {
+				if (response !== '') {
+					$('.previous-results .mobile-results tbody').empty();
+					$('.previous-results .mobile-results tbody').append(response);
+				}
+			},
+			error: function(response) {}
+		}),
+	).then(function() {
+		$('.previous-results').show();
+		console.log('Display Successful!');
 	});
 }
