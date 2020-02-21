@@ -46,7 +46,7 @@ function eqa_settings_init() {
 
 	add_settings_section( 'eqaPlugin_section', 'Control Panel', 'eqaPlugin_section_callback', 'expressQAPlugin' );
 
-	add_settings_field( 'eqa_field_select_client', 'Client', 'eqa_field_select_client_render', 'expressQAPlugin', 'eqaPlugin_section' );
+	// add_settings_field( 'eqa_field_select_client', 'Client', 'eqa_field_select_client_render', 'expressQAPlugin', 'eqaPlugin_section' );
 	add_settings_field( 'eqa_field_select_type', 'QA Type', 'eqa_field_select_type_render', 'expressQAPlugin', 'eqaPlugin_section' );
 
 	add_settings_field( 'eqa_field_checkbox_tagline', 'Tagline provided?', 'eqa_field_checkbox_tagline_render', 'expressQAPlugin', 'eqaPlugin_section' );
