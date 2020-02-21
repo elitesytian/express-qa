@@ -405,3 +405,19 @@ function storeOSData() {
 
 	wp_die();
 }
+
+// ALL PREVIOUS RESULTS
+add_action('wp_ajax_getAllPreviousResults','getAllPreviousResults');
+add_action('wp_ajax_nopriv_getAllPreviousResults','getAllPreviousResults');
+function getAllPreviousResults() {
+	$type   = isset( $_POST['result_type'] ) ? $_POST['result_type'] : '';
+
+	getIndividualPreviousResults('os', $type, 'Overall Score');
+	getIndividualPreviousResults('fcp', $type, 'First Contentful Paint');
+	getIndividualPreviousResults('fmp', $type, 'First Meaningful Paint');
+	getIndividualPreviousResults('si', $type, 'Speed Index');
+	getIndividualPreviousResults('tti', $type, 'Time to Interactive');
+	getIndividualPreviousResults('fci', $type, 'First CPU Idle');
+	getIndividualPreviousResults('fcp', $type, 'First Contentful Paint');
+	getIndividualPreviousResults('mpfid', $type, 'Max Potential First Input Delay');
+}
