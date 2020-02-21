@@ -74,21 +74,34 @@ function eqa_speedtest() { ?>
 			</div>
 		</div>
 
-		<!-- <div class="container">
-			<div class="previous-results">
-				<table class="table">
-					<thead>
-						<tr>
-							<td>Setting</td>
-							<td colspan="5">Previous Results</td>
-						</tr>
-					</thead>
-					<tbody>
-						<?php //getPreviousResults('fcp', 'desktop', 'First Contentful Paint'); ?>
-					</tbody>
-				</table>
+		<div class="container">
+			<div class="row previous-results">
+				<div class="col-12 col-md-6">
+					<table class="desktop-results">
+						<thead>
+							<tr>
+								<td>Setting</td>
+								<td colspan="5">Previous Results (Oldest to Newest)</td>
+							</tr>
+						</thead>
+						<tbody>
+						</tbody>
+					</table>
+				</div>
+				<div class="col-12 col-md-6">
+					<table class="mobile-results">
+						<thead>
+							<tr>
+								<td>Setting</td>
+								<td colspan="5">Previous Results (Oldest to Newest)</td>
+							</tr>
+						</thead>
+						<tbody>
+						</tbody>
+					</table>
+				</div>
 			</div>
-		</div> -->
+		</div>
 	</div>
 
 	<?php
