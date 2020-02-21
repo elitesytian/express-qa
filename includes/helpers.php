@@ -80,7 +80,7 @@ function getProgress() {
 	<?php
 }
 
-function getPreviousResults($data, $type, $label) {
+function getIndividualPreviousResults($data, $type, $label) {
 	$setting_name = 'eqa_pagespeed_' . $type . '_' . $data;
 
 	$option = get_option($setting_name);
@@ -89,9 +89,15 @@ function getPreviousResults($data, $type, $label) {
 
 		<tr>
 			<td><?php echo $label; ?></td>
-			<?php for ($i=0; $i < 5; $i++) { ?>
-				<td><?php echo $option[$i]; ?></td>
-			<?php } ?>
+
+			<?php if (count($option) > 1): ?>
+				<?php for ($i=0; $i < 5; $i++) { ?>
+					<td class="result"><?php echo $option[$i]; ?></td>
+				<?php } ?>
+			<?php else: ?>
+				<td class="no-result">No previous data</td>
+			<?php endif; ?>
+
 		</tr>
 
 	<?php }
