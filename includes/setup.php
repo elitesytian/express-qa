@@ -13,29 +13,31 @@ function _plugin_setup() {
 // EXPRESS QA ENQUEUE SCRIPTS AND STYLES
 add_action('admin_enqueue_scripts', 'eqa_enqueue_scripts_styles', 10);
 function eqa_enqueue_scripts_styles() {
-	wp_deregister_script('jquery');
-	wp_register_script('jquery', '//code.jquery.com/jquery-3.4.1.js', false, '3.4.1', false);
-
-	$currQAType = getCurrentQAType();
-	if ($currQAType == 'speedtest') {
-		wp_enqueue_style('bootstrap-css', plugin_dir_url( __FILE__ ) . '../assets/css/vendor/bootstrap-grid.min.css');
-		wp_enqueue_style('fontawesome-css', plugin_dir_url( __FILE__ ) . '../assets/css/vendor/fontawesome.min.css');
-		wp_enqueue_style('speedtest-v5-css', plugin_dir_url( __FILE__ ) . '../assets/css/speedtest-v5.css');
-
-		wp_enqueue_script('speedtest-v5-js', plugin_dir_url( __FILE__ ) . '../assets/js/speedtest-v5.js', array('jquery'), '1', true);
-	}
 
 	$page = $_GET["page"];
 
 	if ( $page == "express-qa" ) {
+		wp_deregister_script('jquery');
+		wp_register_script('jquery', '//code.jquery.com/jquery-3.4.1.js', false, '3.4.1', false);
+
+		$currQAType = getCurrentQAType();
+		if ($currQAType == 'speedtest') {
+			wp_enqueue_style('bootstrap-css', plugin_dir_url( __FILE__ ) . '../assets/css/vendor/bootstrap-grid.min.css');
+			wp_enqueue_style('fontawesome-css', plugin_dir_url( __FILE__ ) . '../assets/css/vendor/fontawesome.min.css');
+			wp_enqueue_style('speedtest-v5-css', plugin_dir_url( __FILE__ ) . '../assets/css/speedtest-v5.css');
+
+			wp_enqueue_script('speedtest-v5-js', plugin_dir_url( __FILE__ ) . '../assets/js/speedtest-v5.js', array('jquery'), '1', true);
+		}
+
 		wp_enqueue_style('plugin-css', plugin_dir_url( __FILE__ ) . '../assets/css/main.css');
 		wp_enqueue_script('plugin-js', plugin_dir_url( __FILE__ ) . '../assets/js/main.js', array('jquery'), '1', true);
+
+		// AJAX
+		wp_localize_script( 'speedtest-v5-js', 'ajax_object', array(
+			'ajax_url' => admin_url( 'admin-ajax.php' ),
+		));
 	}
 
-	// AJAX
-	wp_localize_script( 'speedtest-v5-js', 'ajax_object', array(
-		'ajax_url' => admin_url( 'admin-ajax.php' ),
-	));
 }
 
 // EXPRESS QA SETTINGS
