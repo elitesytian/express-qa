@@ -26,11 +26,11 @@ define('INITIAL_PLUGINS_TO_CHECK', array(
 		'path'   => 'duplicator-pro/duplicator-pro.php',
 		'status' => 'installed'
 	),
-	array(
-		'name'   => 'Super Progressive Web Apps',
-		'path'   => 'super-progressive-web-apps/superpwa.php',
-		'status' => 'installed'
-	),
+	// array(
+	// 	'name'   => 'Super Progressive Web Apps',
+	// 	'path'   => 'super-progressive-web-apps/superpwa.php',
+	// 	'status' => 'installed'
+	// ),
 	// array(
 	// 	'name'   => 'reSmush.it Image Optimizer',
 	// 	'path'   => 'resmushit-image-optimizer/resmushit.php',

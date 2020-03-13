@@ -36,11 +36,11 @@ define('ALPHA_PLUGINS_TO_CHECK', array(
 		'path'   => 'brozzme-db-prefix-change/brozzme_db_prefix.php',
 		'status' => 'active'
 	),
-	array(
-		'name'   => 'Super Progressive Web Apps',
-		'path'   => 'super-progressive-web-apps/superpwa.php',
-		'status' => 'installed'
-	),
+	// array(
+	// 	'name'   => 'Super Progressive Web Apps',
+	// 	'path'   => 'super-progressive-web-apps/superpwa.php',
+	// 	'status' => 'installed'
+	// ),
 	array(
 		'name'   => 'ACF Content Analysis for Yoast SEO',
 		'path'   => 'acf-content-analysis-for-yoast-seo/yoast-acf-analysis.php',
