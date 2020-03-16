@@ -18,7 +18,7 @@ function eqa_enqueue_scripts_styles() {
 
 	if ( $page == "express-qa" ) {
 		wp_deregister_script('jquery');
-		wp_register_script('jquery', '//code.jquery.com/jquery-3.4.1.js', false, '3.4.1', false);
+		wp_enqueue_script('jquery', plugin_dir_url( __FILE__ ) . '../assets/js/vendor/jquery-3.4.1.min.js', false, '3.4.1', false);
 
 		$currQAType = getCurrentQAType();
 		if ($currQAType == 'speedtest') {
